@@ -290,8 +290,9 @@ let initial_stack_and_reg_data_of_riscv_elf_file symbol_map memory elf_threads_l
 
   let initial_register_abi_data : (string * Sail_impl_base.register_value) list =
     [ ("x1", Sail_impl_base.register_value_for_reg_of_integer (reg "x1") initial_LR_sentinel);
-      ("cur_privilege", Sail_impl_base.register_value_for_reg_of_integer (reg "cur_privilege") (Nat_big_num.of_int 2)); (* initially at Machine privilege *)
+      ("cur_privilege", Sail_impl_base.register_value_for_reg_of_integer (reg "cur_privilege") (Nat_big_num.of_int 0)); (* initially at User privilege *)
       ("misa", Sail_impl_base.register_value_for_reg_of_integer (reg "misa") (Nat_big_num.of_string "0x8000000000000881")); (* RV64IMA *)
+      ("mstatus", Sail_impl_base.register_value_for_reg_of_integer (reg "mstatus") (Nat_big_num.of_string "0x0000000a00000000")); (* RV64 in S and U also *)
     ]
   in
 
